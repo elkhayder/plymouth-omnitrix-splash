@@ -1,0 +1,36 @@
+screen.width = Window.GetWidth();
+screen.height = Window.GetHeight();
+screen.half_width = screen.width / 2;
+screen.half_height = screen.height / 2;
+
+Window.SetBackgroundTopColor(0.035, 0.035, 0.043);
+Window.SetBackgroundBottomColor(0.035, 0.035, 0.043);
+
+omnitrix_raw = Image("omnitrix.png");
+target_size = screen.height * 0.40;
+omnitrix_scaled = omnitrix_raw.Scale(target_size, target_size);
+
+
+sprite = Sprite();
+sprite.SetImage(omnitrix_scaled);
+sprite.SetOpacity(1);
+sprite.SetZ(15);
+sprite.SetX(screen.half_width - (target_size / 2));
+sprite.SetY(screen.half_height - (target_size / 2));
+
+rotation_angle = 0;
+
+fun refresh_callback () {
+    // Rotate Outer Tech Arc
+    rotation_angle += 0.03;
+    sprite.SetImage(omnitrix_scaled.Rotate(rotation_angle));
+    # sprite.Rotate(rotation_angle);
+}
+
+Plymouth.SetRefreshFunction (refresh_callback);
+
+fun quit_callback () {
+    sprite.SetOpacity(0);
+}
+
+Plymouth.SetQuitFunction(quit_callback);

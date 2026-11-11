@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" role="img" aria-label="Omnitrix Emblem">
+  <defs>
+    <!-- Solid Gradients (Plymouth Compatible) -->
+    <linearGradient id="bezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3f3f46" />
+      <stop offset="50%" stop-color="#18181b" />
+      <stop offset="100%" stop-color="#09090b" />
+    </linearGradient>
+
+    <radialGradient id="dialGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#baff58" />
+      <stop offset="60%" stop-color="#65d719" />
+      <stop offset="88%" stop-color="#319d08" />
+      <stop offset="100%" stop-color="#0E4200" />
+    </radialGradient>
+  </defs>
+
+  <g id="omnitrix-emblem-group">
+    <!-- 1. Outer Ring Base -->
+    <circle cx="250" cy="250" r="235" fill="none" stroke="#65d719" stroke-opacity="0.18" stroke-width="2" stroke-dasharray="6 10" />
+
+    <!-- 2. Outer Metallic Bezel Structure -->
+    <circle cx="250" cy="250" r="210" fill="#18181b" stroke="#09090b" stroke-width="4" />
+    <circle cx="250" cy="250" r="192" fill="url(#bezelGrad)" stroke="#3f3f46" stroke-width="2.5" />
+
+    <!-- 3. Four Quadrant Rivets -->
+    <circle cx="250" cy="46" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5" />
+    <circle cx="250" cy="454" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5" />
+    <circle cx="46" cy="250" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5" />
+    <circle cx="454" cy="250" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5" />
+
+    <!-- 4. Four Diagonal Markers -->
+    <path d="M 104 104 L 122 122 M 396 104 L 378 122 M 104 396 L 122 378 M 396 396 L 378 378" stroke="#65d719" stroke-width="3.5" stroke-linecap="round" stroke-opacity="0.85" />
+
+    <!-- 5. Main Dial Face -->
+    <circle cx="250" cy="250" r="168" fill="url(#dialGlow)" />
+
+    <!-- 6. Left & Right Hourglass Triangles (20px Center Gap, Rotated 90°) -->
+    <path d="M 131.2 131.2 L 240 250 L 131.2 368.8 A 168 168 0 0 1 131.2 131.2 Z" fill="#070a07" stroke="#000000" stroke-width="3" stroke-linejoin="round" />
+    <path d="M 368.8 131.2 L 260 250 L 368.8 368.8 A 168 168 0 0 0 368.8 131.2 Z" fill="#070a07" stroke="#000000" stroke-width="3" stroke-linejoin="round" />
+
+    <circle cx="250" cy="250" r="168" fill="none" stroke="#65d719" stroke-width="2" stroke-opacity="0.6" />
+
+    <!-- 7. Center Core Dot -->
+    <circle cx="250" cy="250" r="3.5" fill="#65d719" opacity="0.95" />
+  </g>
+</svg>

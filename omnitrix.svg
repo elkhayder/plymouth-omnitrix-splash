@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" role="img" aria-label="Omnitrix Emblem">
+  <defs>
+    <!-- Metallic Bevel Gradient -->
+    <linearGradient id="bezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#27272a"/>
+      <stop offset="50%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+
+    <!-- Outer Ring Gradient -->
+    <linearGradient id="outerRingGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#09090b"/>
+      <stop offset="50%" stop-color="#3f3f46"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+
+    <!-- Sci-Fi Dial Face Radial Glow -->
+    <radialGradient id="dialGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a3ff12"/>
+      <stop offset="60%" stop-color="#65d719"/>
+      <stop offset="88%" stop-color="#0f3802"/>
+      <stop offset="100%" stop-color="#030703"/>
+    </radialGradient>
+
+    <!-- Hourglass Drop Shadow -->
+    <filter id="hourglassShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#000000" flood-opacity="0.9"/>
+    </filter>
+  </defs>
+
+  <!-- Omnitrix Base Wrapper -->
+  <g id="omnitrix-emblem-group">
+
+    <!-- 1. Plymouth Tech Spinner Track (Outer Ring) -->
+    <circle cx="250" cy="250" r="235" fill="none" stroke="#a3ff12" stroke-opacity="0.18" stroke-width="2" stroke-dasharray="6 10"/>
+    
+    <!-- Animated Spinner Arc (Class controlled via JS/CSS) -->
+    <circle id="plymouth-ring-arc" class="animate-plymouth-spin" cx="250" cy="250" r="226" fill="none" stroke="#a3ff12" stroke-opacity="0.75" stroke-width="3" stroke-dasharray="80 320" stroke-linecap="round"/>
+
+    <!-- 2. Outer Metallic Bezel Structure -->
+    <circle cx="250" cy="250" r="210" fill="url(#outerRingGrad)" stroke="#09090b" stroke-width="4"/>
+    <circle cx="250" cy="250" r="192" fill="url(#bezelGrad)" stroke="#3f3f46" stroke-width="2.5"/>
+
+    <!-- 3. Four Quadrant Metallic Rivet Accent Buttons -->
+    <circle cx="250" cy="46" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5"/>
+    <circle cx="250" cy="454" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5"/>
+    <circle cx="46" cy="250" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5"/>
+    <circle cx="454" cy="250" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5"/>
+
+    
+
+    <!-- 4. Four Diagonal Chamfer Markers -->
+    <path d="M 104 104 L 122 122 M 396 104 L 378 122 M 104 396 L 122 378 M 396 396 L 378 378" stroke="#a3ff12" stroke-width="3.5" stroke-linecap="round" stroke-opacity="0.85"/>
+
+    <!-- 5. Main Active Glowing Green Dial Face -->
+    <circle id="dial-face" cx="250" cy="250" r="168" fill="url(#dialGlow)"/>
+
+    <!-- Left Triangle (Apex pointing right to X=240) -->
+    <path d="M 131.2 131.2 L 240 250 L 131.2 368.8 A 168 168 0 0 1 131.2 131.2 Z" fill="#070a07" 
+          stroke="#000000" 
+          stroke-width="3" 
+          stroke-linejoin="round"
+          ></path>
+      
+    <!-- Right Triangle (Apex pointing left to X=260) -->
+    <path d="M 368.8 131.2 L 260 250 L 368.8 368.8 A 168 168 0 0 0 368.8 131.2 Z"  stroke="#000000" 
+          stroke-width="3" 
+          stroke-linejoin="round"
+          ></path>
+
+
+    <circle cx="250" cy="250" r="168" fill="none" stroke="#a3ff12" stroke-width="2" stroke-opacity="0.6"/>
+
+    <!-- 6. Sharp Iconic Omnitrix Black Hourglass Triangles -->
+   
+
+  
+
+    <!-- 7. Center Gap Core Light Accent Dot -->
+    <circle cx="250" cy="250" r="3.5" fill="#a3ff12" opacity="0.95"/>
+
+  </g>
+</svg>
