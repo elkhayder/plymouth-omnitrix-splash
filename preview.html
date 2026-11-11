@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omnitrix Kubuntu Plymouth Splash SVG Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    code, pre, textarea {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Plymouth Boot Animations */
+    @keyframes omnitrix-pulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 15px rgba(163, 255, 18, 0.45)) drop-shadow(0 0 35px rgba(101, 215, 25, 0.25));
+      }
+      50% {
+        filter: drop-shadow(0 0 32px rgba(163, 255, 18, 0.9)) drop-shadow(0 0 65px rgba(101, 215, 25, 0.55));
+      }
+    }
+
+    @keyframes plymouth-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes dot-bounce {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
+      40% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .animate-omnitrix-glow {
+      animation: omnitrix-pulse 3s ease-in-out infinite;
+    }
+
+    .animate-plymouth-spin {
+      animation: plymouth-spin 3s linear infinite;
+      transform-origin: center;
+    }
+
+    .dot-1 { animation: dot-bounce 1.4s infinite ease-in-out 0s; }
+    .dot-2 { animation: dot-bounce 1.4s infinite ease-in-out 0.2s; }
+    .dot-3 { animation: dot-bounce 1.4s infinite ease-in-out 0.4s; }
+
+    /* Custom Checkered Grid for SVG Transparency Mode */
+    .bg-checkerboard {
+      background-image: linear-gradient(45deg, #18181b 25%, transparent 25%),
+                        linear-gradient(-45deg, #18181b 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #18181b 75%),
+                        linear-gradient(-45deg, transparent 75%, #18181b 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #09090b; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-black">
+
+  <!-- Main Top Bar -->
+  <header class="border-b border-zinc-800 bg-zinc-900/90 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <!-- Omnitrix Icon Badge -->
+        <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center p-1">
+          <svg class="w-full h-full text-emerald-400" viewBox="0 0 100 100" fill="currentColor">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="8"/>
+            <circle cx="50" cy="50" r="32" fill="#09090b"/>
+            <path d="M 28 20 L 50 43 L 72 20 Z M 28 80 L 50 57 L 72 80 Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-bold text-base sm:text-lg tracking-tight text-white flex items-center gap-2">
+            Omnitrix Boot Splash Studio
+            <span class="text-[10px] sm:text-xs font-mono font-normal bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full">Kubuntu Plymouth Vector</span>
+          </h1>
+        </div>
+      </div>
+      
+      <!-- Copy/Download Actions -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <button id="btn-copy" class="px-3.5 py-2 bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-600 text-xs sm:text-sm font-medium rounded-lg transition border border-zinc-700 flex items-center space-x-2 text-zinc-200">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>Copy SVG</span>
+        </button>
+        <button id="btn-download" class="px-3.5 py-2 bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-zinc-950 font-semibold text-xs sm:text-sm rounded-lg transition shadow-lg shadow-emerald-950/50 flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          <span>Download .svg</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Workspace Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
+
+    <!-- Left Panel: Controls & Code Inspector (5 cols) -->
+    <div class="lg:col-span-5 flex flex-col space-y-5">
+      
+      <!-- Theme & Parameter Controls -->
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 shadow-xl space-y-5">
+        <h2 class="text-xs font-semibold uppercase tracking-wider text-zinc-400 flex items-center gap-2">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          Color Palette & Mode Selector
+        </h2>
+
+        <!-- Color Preset Buttons -->
+        <div class="grid grid-cols-2 gap-2" id="preset-container">
+          <button data-preset="classic" class="preset-btn p-2.5 rounded-lg text-xs font-medium border border-emerald-500/60 bg-emerald-500/10 text-emerald-300 flex items-center gap-2 transition">
+            <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-emerald-400/30"></span>
+            Classic Green
+          </button>
+          <button data-preset="calibrated" class="preset-btn p-2.5 rounded-lg text-xs font-medium border border-zinc-700 bg-zinc-800/80 text-zinc-300 hover:bg-zinc-700 flex items-center gap-2 transition">
+            <span class="w-3.5 h-3.5 rounded-full bg-lime-400"></span>
+            Calibrated Lime
+          </button>
+          <button data-preset="albedo" class="preset-btn p-2.5 rounded-lg text-xs font-medium border border-zinc-700 bg-zinc-800/80 text-zinc-300 hover:bg-zinc-700 flex items-center gap-2 transition">
+            <span class="w-3.5 h-3.5 rounded-full bg-red-500"></span>
+            Albedo Red
+          </button>
+          <button data-preset="ultimatrix" class="preset-btn p-2.5 rounded-lg text-xs font-medium border border-zinc-700 bg-zinc-800/80 text-zinc-300 hover:bg-zinc-700 flex items-center gap-2 transition">
+            <span class="w-3.5 h-3.5 rounded-full bg-cyan-400"></span>
+            Recalibrated Blue
+          </button>
+        </div>
+
+        <!-- Animation & Overlay Toggles -->
+        <div class="space-y-3 pt-3 border-t border-zinc-800">
+          <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-400">Boot Screen Toggles</label>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-zinc-300">Pulsing Neon Glow</span>
+            <input type="checkbox" id="toggle-glow" checked class="w-4 h-4 rounded border-zinc-700 text-emerald-500 focus:ring-emerald-500 bg-zinc-950 cursor-pointer">
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-zinc-300">Plymouth Loading Animation</span>
+            <input type="checkbox" id="toggle-plymouth" checked class="w-4 h-4 rounded border-zinc-700 text-emerald-500 focus:ring-emerald-500 bg-zinc-950 cursor-pointer">
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-zinc-300">Kubuntu OS Branding & Ambient Glow</span>
+            <input type="checkbox" id="toggle-kubuntu" checked class="w-4 h-4 rounded border-zinc-700 text-emerald-500 focus:ring-emerald-500 bg-zinc-950 cursor-pointer">
+          </div>
+        </div>
+
+        <!-- Scale & Size Control Slider -->
+        <div class="space-y-2 pt-3 border-t border-zinc-800">
+          <div class="flex justify-between text-xs text-zinc-300">
+            <span>Emblem Scale Factor</span>
+            <span id="scale-val" class="font-mono text-emerald-400">1.0x</span>
+          </div>
+          <input type="range" id="slider-scale" min="0.6" max="1.4" step="0.05" value="1.0" class="w-full accent-emerald-500 bg-zinc-800 h-1.5 rounded-lg appearance-none cursor-pointer">
+        </div>
+      </div>
+
+      <!-- Raw SVG Source Inspector -->
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 shadow-xl flex-1 flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-zinc-400 flex items-center gap-2">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            SVG Vector Code Output
+          </h2>
+          <span class="text-[10px] font-mono bg-zinc-800 text-zinc-400 px-2 py-0.5 rounded">Standalone SVG 1.1</span>
+        </div>
+        <div class="relative flex-1 min-h-[220px]">
+          <textarea id="svg-code-view" readonly class="w-full h-full p-3 bg-zinc-950 text-emerald-400 font-mono text-[11px] leading-relaxed rounded-lg border border-zinc-800 resize-none focus:outline-none focus:border-zinc-700 select-all"></textarea>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Panel: Screen Canvas (7 cols) -->
+    <div class="lg:col-span-7 flex flex-col space-y-4">
+      
+      <!-- Toolbar for Display Canvas -->
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center justify-between">
+        <div class="flex items-center space-x-2 text-xs text-zinc-300">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-medium">Plymouth Screen Preview (16:9 Display Frame)</span>
+        </div>
+        <div class="flex items-center space-x-2 text-xs">
+          <span class="text-zinc-500">Canvas BG:</span>
+          <button id="bg-kubuntu-btn" class="px-2.5 py-1 rounded bg-zinc-800 border border-zinc-700 text-zinc-200 font-medium">Kubuntu Dark (#0B0F19)</button>
+          <button id="bg-check-btn" class="px-2.5 py-1 rounded bg-zinc-950 border border-zinc-800 text-zinc-400 hover:text-zinc-200">Grid</button>
+        </div>
+      </div>
+
+      <!-- Main Display Frame Simulation -->
+      <div id="boot-screen" class="relative w-full aspect-video bg-[#0B0F19] rounded-2xl border-4 border-zinc-800 shadow-2xl overflow-hidden flex flex-col items-center justify-center p-6 transition-colors duration-300">
+        
+        <!-- Kubuntu Ambient Glow Backdrop -->
+        <div id="kubuntu-ambient" class="absolute inset-0 bg-radial from-blue-900/20 via-indigo-950/10 to-transparent opacity-80 pointer-events-none"></div>
+
+        <!-- Plymouth Screen Central SVG Container -->
+        <div id="svg-render-box" class="relative z-10 w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 flex items-center justify-center transition-transform duration-200">
+          <!-- Dynamically Injected SVG Content -->
+        </div>
+
+        <!-- Plymouth Loader & Kubuntu OS Branding Footer -->
+        <div id="plymouth-brand-box" class="absolute bottom-6 sm:bottom-10 z-10 flex flex-col items-center space-y-3 transition-opacity duration-300">
+          
+          <!-- Animated Plymouth Dots -->
+          <div id="plymouth-dots" class="flex items-center space-x-2 my-1">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 dot-1"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 dot-2"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 dot-3"></span>
+          </div>
+
+          <!-- Kubuntu Logo & Text Branding -->
+          <div id="kubuntu-logo-group" class="flex items-center space-x-2.5 text-zinc-300 font-sans tracking-wide">
+            <!-- Official Kubuntu Gear Logo Concept -->
+            <svg class="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2A10 10 0 1 0 22 12 10 10 0 0 0 12 2Zm0 3a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 12 5Zm-5.5 11a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 6.5 16Zm11 0a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5Z"/>
+            </svg>
+            <span class="font-bold text-sm tracking-wider text-white">kubuntu</span>
+            <span class="text-xs font-mono text-zinc-500">24.04 LTS</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Integration Instructions -->
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-xs text-zinc-400 space-y-2">
+        <h3 class="font-semibold text-zinc-200 flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Kubuntu Plymouth Integration Guide
+        </h3>
+        <p class="leading-relaxed">
+          Save the exported SVG as <code class="text-emerald-400 bg-zinc-950 px-1 py-0.5 rounded border border-zinc-800">omnitrix.svg</code> inside your Plymouth theme directory (e.g., <code class="text-zinc-300 bg-zinc-950 px-1 py-0.5 rounded border border-zinc-800">/usr/share/plymouth/themes/kubuntu-omnitrix/</code>). You can render this directly as a vector or convert it to a PNG via <code class="text-zinc-300 bg-zinc-950 px-1 py-0.5 rounded border border-zinc-800">rsvg-convert -w 512 -h 512 omnitrix.svg -o splash.png</code> for legacy Plymouth scripts.
+        </p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-emerald-500 text-zinc-950 font-bold px-4 py-3 rounded-xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-2 z-50">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    <span id="toast-msg">SVG copied to clipboard!</span>
+  </div>
+
+  <script>
+    // Theme Definitions
+    const THEMES = {
+      classic: {
+        primary: '#a3ff12',
+        secondary: '#65d719',
+        darkCore: '#0f3802',
+        outerBorder: '#3f3f46',
+        bezelGradientStart: '#27272a',
+        bezelGradientEnd: '#09090b',
+        glowColor: 'rgba(163, 255, 18, 0.6)'
+      },
+      calibrated: {
+        primary: '#ccff00',
+        secondary: '#88e000',
+        darkCore: '#1a3300',
+        outerBorder: '#52525b',
+        bezelGradientStart: '#3f3f46',
+        bezelGradientEnd: '#18181b',
+        glowColor: 'rgba(204, 255, 0, 0.6)'
+      },
+      albedo: {
+        primary: '#ff3333',
+        secondary: '#cc0000',
+        darkCore: '#3b0000',
+        outerBorder: '#52525b',
+        bezelGradientStart: '#3f3f46',
+        bezelGradientEnd: '#18181b',
+        glowColor: 'rgba(255, 51, 51, 0.6)'
+      },
+      ultimatrix: {
+        primary: '#00f0ff',
+        secondary: '#0099ff',
+        darkCore: '#002b47',
+        outerBorder: '#38bdf8',
+        bezelGradientStart: '#1e293b',
+        bezelGradientEnd: '#0f172a',
+        glowColor: 'rgba(0, 240, 255, 0.6)'
+      }
+    };
+
+    let activeThemeKey = 'classic';
+
+    // Generates mathematically precise SVG code for the Omnitrix emblem
+    function generateOmnitrixSVG(themeKey) {
+      const t = THEMES[themeKey];
+      
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" role="img" aria-label="Omnitrix Emblem">
+  <defs>
+    <!-- Metallic Bevel Gradient -->
+    <linearGradient id="bezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${t.bezelGradientStart}"/>
+      <stop offset="50%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="${t.bezelGradientEnd}"/>
+    </linearGradient>
+
+    <!-- Outer Ring Gradient -->
+    <linearGradient id="outerRingGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#09090b"/>
+      <stop offset="50%" stop-color="#3f3f46"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+
+    <!-- Sci-Fi Dial Face Radial Glow -->
+    <radialGradient id="dialGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="${t.primary}"/>
+      <stop offset="60%" stop-color="${t.secondary}"/>
+      <stop offset="88%" stop-color="${t.darkCore}"/>
+      <stop offset="100%" stop-color="#030703"/>
+    </radialGradient>
+
+    <!-- Hourglass Drop Shadow -->
+    <filter id="hourglassShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#000000" flood-opacity="0.9"/>
+    </filter>
+  </defs>
+
+  <!-- Omnitrix Base Wrapper -->
+  <g id="omnitrix-emblem-group">
+
+    <!-- 1. Plymouth Tech Spinner Track (Outer Ring) -->
+    <circle cx="250" cy="250" r="235" fill="none" stroke="${t.primary}" stroke-opacity="0.18" stroke-width="2" stroke-dasharray="6 10"/>
+    
+    <!-- Animated Spinner Arc (Class controlled via JS/CSS) -->
+    <circle id="plymouth-ring-arc" class="animate-plymouth-spin" cx="250" cy="250" r="226" fill="none" stroke="${t.primary}" stroke-opacity="0.75" stroke-width="3" stroke-dasharray="80 320" stroke-linecap="round"/>
+
+    <!-- 2. Outer Metallic Bezel Structure -->
+    <circle cx="250" cy="250" r="210" fill="url(#outerRingGrad)" stroke="#09090b" stroke-width="4"/>
+    <circle cx="250" cy="250" r="192" fill="url(#bezelGrad)" stroke="${t.outerBorder}" stroke-width="2.5"/>
+
+    <!-- 3. Four Quadrant Metallic Rivet Accent Buttons -->
+    <circle cx="250" cy="46" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5"/>
+    <circle cx="250" cy="454" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5"/>
+    <circle cx="46" cy="250" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5"/>
+    <circle cx="454" cy="250" r="4.5" fill="#a1a1aa" stroke="#09090b" stroke-width="1.5"/>
+
+    
+
+    <!-- 4. Four Diagonal Chamfer Markers -->
+    <path d="M 104 104 L 122 122 M 396 104 L 378 122 M 104 396 L 122 378 M 396 396 L 378 378" stroke="${t.primary}" stroke-width="3.5" stroke-linecap="round" stroke-opacity="0.85"/>
+
+    <!-- 5. Main Active Glowing Green Dial Face -->
+    <circle id="dial-face" cx="250" cy="250" r="168" fill="url(#dialGlow)"/>
+
+    <!-- Left Triangle (Apex pointing right to X=240) -->
+    <path d="M 131.2 131.2 L 240 250 L 131.2 368.8 A 168 168 0 0 1 131.2 131.2 Z" fill="#070a07" 
+          stroke="#000000" 
+          stroke-width="3" 
+          stroke-linejoin="round"
+          filter="url(#hourglassShadow)"></path>
+      
+    <!-- Right Triangle (Apex pointing left to X=260) -->
+    <path d="M 368.8 131.2 L 260 250 L 368.8 368.8 A 168 168 0 0 0 368.8 131.2 Z"  stroke="#000000" 
+          stroke-width="3" 
+          stroke-linejoin="round"
+          filter="url(#hourglassShadow)"></path>
+
+
+    <circle cx="250" cy="250" r="168" fill="none" stroke="${t.primary}" stroke-width="2" stroke-opacity="0.6"/>
+
+    <!-- 6. Sharp Iconic Omnitrix Black Hourglass Triangles -->
+   
+
+  
+
+    <!-- 7. Center Gap Core Light Accent Dot -->
+    <circle cx="250" cy="250" r="3.5" fill="${t.primary}" opacity="0.95"/>
+
+  </g>
+</svg>`;
+    }
+
+    //  <!-- Top Hourglass Triangle (Point meeting near center at y=245) -->
+    // <path d="M 131.2 131.2 L 250 245 L 368.8 131.2 A 168 168 0 0 0 131.2 131.2 Z" 
+          // fill="#070a07" 
+          // stroke="#000000" 
+          // stroke-width="3" 
+          // stroke-linejoin="round"
+          // filter="url(#hourglassShadow)"/>
+
+    // <!-- Bottom Hourglass Triangle (Point meeting near center at y=255) -->
+    // <path d="M 131.2 368.8 L 250 255 L 368.8 368.8 A 168 168 0 0 1 131.2 368.8 Z" 
+    //       fill="#070a07" 
+    //       stroke="#000000" 
+    //       stroke-width="3" 
+    //       stroke-linejoin="round"
+    //       filter="url(#hourglassShadow)"/>
+
+    // DOM Elements Reference
+    const renderBox = document.getElementById('svg-render-box');
+    const codeView = document.getElementById('svg-code-view');
+    const toggleGlow = document.getElementById('toggle-glow');
+    const togglePlymouth = document.getElementById('toggle-plymouth');
+    const toggleKubuntu = document.getElementById('toggle-kubuntu');
+    const sliderScale = document.getElementById('slider-scale');
+    const scaleVal = document.getElementById('scale-val');
+    const bootScreen = document.getElementById('boot-screen');
+    const kubuntuAmbient = document.getElementById('kubuntu-ambient');
+    const plymouthBrandBox = document.getElementById('plymouth-brand-box');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toast-msg');
+
+    // Render SVG into view and update source code block
+    function updateRender() {
+      const svgString = generateOmnitrixSVG(activeThemeKey);
+      renderBox.innerHTML = svgString;
+      codeView.value = svgString;
+
+      // Handle Glow Class
+      if (toggleGlow.checked) {
+        renderBox.classList.add('animate-omnitrix-glow');
+      } else {
+        renderBox.classList.remove('animate-omnitrix-glow');
+      }
+
+      // Handle Plymouth Ring Visibility inside SVG
+      const ringArc = document.getElementById('plymouth-ring-arc');
+      const plymouthDots = document.getElementById('plymouth-dots');
+      if (ringArc) {
+        ringArc.style.display = togglePlymouth.checked ? 'block' : 'none';
+      }
+      if (plymouthDots) {
+        plymouthDots.style.display = togglePlymouth.checked ? 'flex' : 'none';
+      }
+
+      // Handle Kubuntu Branding
+      if (toggleKubuntu.checked) {
+        kubuntuAmbient.style.opacity = '0.8';
+        plymouthBrandBox.style.opacity = '1';
+      } else {
+        kubuntuAmbient.style.opacity = '0';
+        plymouthBrandBox.style.opacity = togglePlymouth.checked ? '1' : '0';
+      }
+
+      // Update Plymouth Dot Colors according to active theme
+      const t = THEMES[activeThemeKey];
+      document.querySelectorAll('#plymouth-dots span').forEach(dot => {
+        dot.style.backgroundColor = t.primary;
+      });
+    }
+
+    // Event Listeners for Preset Buttons
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const preset = btn.getAttribute('data-preset');
+        activeThemeKey = preset;
+
+        // Active State Styling
+        document.querySelectorAll('.preset-btn').forEach(b => {
+          b.classList.remove('border-emerald-500/60', 'bg-emerald-500/10', 'text-emerald-300');
+          b.classList.add('border-zinc-700', 'bg-zinc-800/80', 'text-zinc-300');
+        });
+        btn.classList.remove('border-zinc-700', 'bg-zinc-800/80', 'text-zinc-300');
+        btn.classList.add('border-emerald-500/60', 'bg-emerald-500/10', 'text-emerald-300');
+
+        updateRender();
+      });
+    });
+
+    // Control Inputs
+    toggleGlow.addEventListener('change', updateRender);
+    togglePlymouth.addEventListener('change', updateRender);
+    toggleKubuntu.addEventListener('change', updateRender);
+
+    sliderScale.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value);
+      scaleVal.textContent = val.toFixed(2) + 'x';
+      renderBox.style.transform = `scale(${val})`;
+    });
+
+    // Canvas Background Toggle
+    document.getElementById('bg-kubuntu-btn').addEventListener('click', () => {
+      bootScreen.classList.remove('bg-checkerboard');
+      bootScreen.style.backgroundColor = '#0B0F19';
+    });
+
+    document.getElementById('bg-check-btn').addEventListener('click', () => {
+      bootScreen.classList.add('bg-checkerboard');
+      bootScreen.style.backgroundColor = 'transparent';
+    });
+
+    // Copy SVG Code
+    function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+        } catch (err) {
+          console.error('Fallback copy failed', err);
+        }
+        document.body.removeChild(textArea);
+      }
+      showToast("SVG copied to clipboard!");
+    }
+
+    document.getElementById('btn-copy').addEventListener('click', () => {
+      copyToClipboard(codeView.value);
+    });
+
+    // Download SVG File
+    document.getElementById('btn-download').addEventListener('click', () => {
+      const blob = new Blob([codeView.value], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `kubuntu-omnitrix-${activeThemeKey}.svg`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("SVG downloaded successfully!");
+    });
+
+    // Toast Notification helper
+    function showToast(msg) {
+      toastMsg.textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2600);
+    }
+
+    // Initial Trigger on Page Load
+    window.onload = function() {
+      updateRender();
+    };
+  </script>
+</body>
+</html>

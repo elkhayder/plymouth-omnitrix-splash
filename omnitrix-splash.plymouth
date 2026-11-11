@@ -1,8 +1,8 @@
 [Plymouth Theme]
 Name=Omnitrix Boot Splash
-Description=Animated Ben 10 Omnitrix Boot Screen for Kubuntu
+Description=Animated Ben 10 Omnitrix Boot Screen
 ModuleName=script
 
 [script]
-ImageDir=/usr/share/plymouth/themes//omnitrix-splash
-ScriptFile=/usr/share/plymouth/themes//omnitrix-splash/omnitrix-splash.script
+ImageDir=/usr/share/plymouth/themes/omnitrix-splash
+ScriptFile=/usr/share/plymouth/themes/omnitrix-splash/omnitrix-splash.script
