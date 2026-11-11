@@ -6,6 +6,7 @@
 ### Ubuntu
 
 ```bash
+git clone https://github.com/elkhayder/plymouth-omnitrix-splash.git
 cd plymouth-omnitrix-splash
 ```
 
