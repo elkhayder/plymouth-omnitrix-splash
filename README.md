@@ -32,7 +32,7 @@ python3 scripts/render-frames.py
 ```
 
 ```bash
-sudo cp -r . /usr/share/plymouth/themes/
+sudo cp -r . /usr/share/plymouth/themes/omnitrix-splash/
 sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/omnitrix-splash/omnitrix-splash.plymouth 200
 sudo update-alternatives --config default.plymouth
 sudo update-initramfs -u
